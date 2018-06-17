@@ -1,0 +1,9 @@
+<%= form_tag({controller: "parse", action: "create"}, multipart: true) do %>
+   <div class="field">
+     <%= label_tag :file %>
+     <%= file_field_tag :file %>
+   </div>
+   <div class="actions">
+      <%= submit_tag 'Submit' %>
+   </div>
+<% end %>
