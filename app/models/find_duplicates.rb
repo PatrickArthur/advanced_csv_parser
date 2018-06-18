@@ -3,17 +3,17 @@
 require 'levenshtein'
 
 class FindDuplicates
-  def search_duplicates(lines, duplicates)
+  def search_duplicates
     # takes initial lines and finds lines that equal since characters are all same
     lines.sort_by { |k| k['id'] }
     dups = lines.select { |e| lines.count(e) > 1 }
     # takes lines and dups and removes dups fron list
-    create_dup_list(dups, lines, duplicates)
+    create_dup_list(dups)
     # finds hard to find dups
-    find_duplicates(lines, duplicates)
+    find_duplicates
   end
 
-  def find_duplicates(lines, duplicates)
+  def find_duplicates
     lines.each do |line|
       lines.each do |line2|
         next if line == line2
@@ -22,7 +22,7 @@ class FindDuplicates
                  else
                    string_difference_percent(line.values.join, line2.values.join)
                  end
-        is_dup ? create_dup_list([line, line2], lines, duplicates) : nil
+        is_dup ? create_dup_list([line, line2]) : nil
       end
     end
   end
@@ -40,10 +40,11 @@ class FindDuplicates
     end
   end
 
-  def create_dup_list(dups, lines, duplicates)
+  def create_dup_list(dups)
     dups.each do |dup|
       lines.delete(dup)
-      duplicates << dup
+      dup["csv_id"] = dup.delete("id")
+      import.duplicates.create(dup)
     end
   end
 end
