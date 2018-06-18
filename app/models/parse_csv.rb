@@ -1,3 +1,5 @@
+# reads file, parses and finds dups
+
 require 'csv'
 
 class ParseCsv < FindDuplicates
@@ -15,9 +17,8 @@ class ParseCsv < FindDuplicates
   end
 
   def read_find_dups
-    CSV.foreach(file, headers: true) {|row| lines << row.to_h}
-    find_duplicates(lines, duplicates)
+    CSV.foreach(file, headers: true) { |row| lines << row.to_h }
+    search_duplicates(lines, duplicates)
     [lines, duplicates]
   end
-
 end

@@ -14,15 +14,15 @@ class Import < ActiveRecord::Base
 
   def create_records(parse)
     parse.each do |hash|
-      hash["csv_id"] = hash.delete("id")
-      self.records.create(hash)
+      hash['csv_id'] = hash.delete('id')
+      records.create(hash)
     end
   end
 
   def create_duplicates(parse)
     parse.each do |hash|
-      hash["csv_id"] = hash.delete("id")
-      self.duplicates.create(hash)
+      hash['csv_id'] = hash.delete('id')
+      duplicates.create(hash)
     end
   end
 end
