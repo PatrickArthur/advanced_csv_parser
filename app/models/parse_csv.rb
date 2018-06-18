@@ -4,6 +4,10 @@ class ParseCsv < FindDuplicates
   attr_reader :file
   attr_accessor :lines, :duplicates
 
+  def self.process(file)
+    new(file).read_find_dups
+  end
+
   def initialize(file)
     @file = file
     @lines = []
@@ -13,7 +17,7 @@ class ParseCsv < FindDuplicates
   def read_find_dups
     CSV.foreach(file, headers: true) {|row| lines << row.to_h}
     find_duplicates(lines, duplicates)
-    record = Record.create(import: lines, duplicate_records: duplicates)
+    [lines, duplicates]
   end
 
 end

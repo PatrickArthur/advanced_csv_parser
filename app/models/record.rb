@@ -1,4 +1,3 @@
 class Record < ActiveRecord::Base
-  serialize :import
-  serialize :duplicate_records
+  belongs_to :import
 end

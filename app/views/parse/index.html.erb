@@ -16,21 +16,21 @@
     <th>Phone </th>
   </tr>
 
-  <% @records.each do |record| %>
-    <% record.duplicate_records.each do |duplicate|%>
+  <% @import.each do |import| %>
+    <% import.duplicates.each do |duplicate|%>
       <tr>
-        <td><%= duplicate["id"] %></td>
-        <td><%= duplicate["first_name"] %></td>
-        <td><%= duplicate["last_name"] %></td>
-        <td><%= duplicate["company"] %></td>
-        <td><%= duplicate["email"] %></td>
-        <td><%= duplicate["address1"] %></td>
-        <td><%= duplicate["address2"] %></td>
-        <td><%= duplicate["zip"] %></td>
-        <td><%= duplicate["city"] %></td>
-        <td><%= duplicate["state_long"] %></td>
-        <td><%= duplicate["state"] %></td>
-        <td><%= duplicate["phone"] %></td>
+        <td><%= duplicate.csv_id %></td>
+        <td><%= duplicate.first_name %></td>
+        <td><%= duplicate.last_name %></td>
+        <td><%= duplicate.company %></td>
+        <td><%= duplicate.email %></td>
+        <td><%= duplicate.address1 %></td>
+        <td><%= duplicate.address2 %></td>
+        <td><%= duplicate.zip %></td>
+        <td><%= duplicate.city %></td>
+        <td><%= duplicate.state_long %></td>
+        <td><%= duplicate.state %></td>
+        <td><%= duplicate.phone %></td>
       </tr>
     <% end %>
   <% end %>
@@ -56,21 +56,21 @@
 
 <h2>Non Duplicates</h2>
 
-<% @records.each do |record| %>
-  <% record.import.each do |line|%>
+<% @import.each do |import| %>
+  <% import.records.each do |line|%>
     <tr>
-      <td><%= line["id"] %></td>
-      <td><%= line["first_name"] %></td>
-      <td><%= line["last_name"] %></td>
-      <td><%= line["company"] %></td>
-      <td><%= line["email"] %></td>
-      <td><%= line["address1"] %></td>
-      <td><%= line["address2"] %></td>
-      <td><%= line["zip"] %></td>
-      <td><%= line["city"] %></td>
-      <td><%= line["state_long"] %></td>
-      <td><%= line["state"] %></td>
-      <td><%= line["phone"] %></td>
+      <td><%= line.csv_id %></td>
+      <td><%= line.first_name %></td>
+      <td><%= line.last_name %></td>
+      <td><%= line.company %></td>
+      <td><%= line.email %></td>
+      <td><%= line.address1 %></td>
+      <td><%= line.address2 %></td>
+      <td><%= line.zip %></td>
+      <td><%= line.city %></td>
+      <td><%= line.state_long %></td>
+      <td><%= line.state %></td>
+      <td><%= line.phone %></td>
     </tr>
   <% end %>
 <% end %>

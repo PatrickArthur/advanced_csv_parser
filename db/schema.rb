@@ -10,11 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_17_223419) do
+ActiveRecord::Schema.define(version: 2018_06_18_030052) do
+
+  create_table "duplicates", force: :cascade do |t|
+    t.string "csv_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company"
+    t.string "email"
+    t.string "address1"
+    t.string "address2"
+    t.string "zip"
+    t.string "city"
+    t.string "state_long"
+    t.string "state"
+    t.string "phone"
+    t.integer "import_id"
+    t.index ["import_id"], name: "index_duplicates_on_import_id"
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.string "file"
+  end
 
   create_table "records", force: :cascade do |t|
-    t.string "import"
-    t.string "duplicate_records"
+    t.string "csv_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company"
+    t.string "email"
+    t.string "address1"
+    t.string "address2"
+    t.string "zip"
+    t.string "city"
+    t.string "state_long"
+    t.string "state"
+    t.string "phone"
+    t.integer "import_id"
+    t.index ["import_id"], name: "index_records_on_import_id"
   end
 
 end
